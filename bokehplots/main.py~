@@ -5,7 +5,7 @@
 
 # In[1]:
 
-
+from os.path import join, dirname
 import numpy as np
 from astropy.io import ascii
 import pandas as pd
@@ -29,7 +29,7 @@ N_COLORS = len(COLORS)
 # In[2]:
 
 
-df = pd.read_pickle('./bokehplots/data/REASONS_DataFrame_withsdbinfo')
+df = pd.read_pickle(join(dirname(__file__), 'static/REASONS_DataFrame_withsdbinfo'))
 df['Sigmatot']=4.0*np.pi*df['f']*(df['rbb'])**2.0
 df['Sigmatot_1sigup']=0.5*np.sqrt((4.0*np.pi*(df['f_1sigup']-df['f_1sigdwn'])*(df['rbb'])**2.0)**2.0+(8.*np.pi*df['f']*df['rbb']*(df['rbb_1sigup']-df['rbb_1sigdwn']))**2.0)
 df['Sigmatot_1sigdwn']=-df['Sigmatot_1sigup']
@@ -90,7 +90,7 @@ def create_figure():
     
       
     #Quantities without upper or lower limits
-    df['imgs']=[glob.glob('/bokehplots/static/'+x+'*.png') for x in df['Target']]
+    df['imgs']=[glob.glob('./static/'+x+'*.png') for x in df['Target']]
     #source.add([glob.glob('./bokehplots/static/'+x+'*.png') for x in source.data['Target']],
                #name='imgs')
     for i in ['Lstar','d','R', 'Fbelt', 'PA']:
