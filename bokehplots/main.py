@@ -7,7 +7,6 @@
 
 
 import numpy as np
-import matplotlib.pyplot as pl
 from astropy.io import ascii
 import pandas as pd
 import bokeh
@@ -30,7 +29,7 @@ N_COLORS = len(COLORS)
 # In[2]:
 
 
-df = pd.read_pickle('./REASONS_DataFrame_withsdbinfo')
+df = pd.read_pickle('./bokehplots/data/REASONS_DataFrame_withsdbinfo')
 df['Sigmatot']=4.0*np.pi*df['f']*(df['rbb'])**2.0
 df['Sigmatot_1sigup']=0.5*np.sqrt((4.0*np.pi*(df['f_1sigup']-df['f_1sigdwn'])*(df['rbb'])**2.0)**2.0+(8.*np.pi*df['f']*df['rbb']*(df['rbb_1sigup']-df['rbb_1sigdwn']))**2.0)
 df['Sigmatot_1sigdwn']=-df['Sigmatot_1sigup']
@@ -294,8 +293,8 @@ show(create_figure())
 # In[7]:
 
 
-pl.hist(df['fracwidth'].values[np.where(df['fracwidth_lims'].values=='NaN')[0]], bins=8, alpha=0.7)
-pl.xlabel('dR/R')
+#pl.hist(df['fracwidth'].values[np.where(df['fracwidth_lims'].values=='NaN')[0]], bins=8, alpha=0.7)
+#pl.xlabel('dR/R')
 
 
 # In[ ]:
