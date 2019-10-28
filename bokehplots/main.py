@@ -7,7 +7,7 @@
 
 from os.path import join, dirname
 import numpy as np
-from astropy.io import ascii
+#from astropy.io import ascii
 import pandas as pd
 import bokeh
 import glob
@@ -18,7 +18,7 @@ from bokeh.plotting import curdoc, figure, ColumnDataSource
 from bokeh.sampledata.autompg import autompg_clean as df
 from bokeh.io import output_notebook, show, push_notebook
 from bokeh.server.server import Server
-output_notebook()
+#output_notebook()
 
 SIZES = list(range(6, 22, 3))
 COLORS = Viridis11
