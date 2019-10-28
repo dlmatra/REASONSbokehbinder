@@ -4,6 +4,3 @@ dependencies:
   - scipy
   - astropy
   - numpy
-  - pip:
-  - pip:
-    - jupyter-server-proxy
