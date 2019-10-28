@@ -3,6 +3,4 @@ dependencies:
   - pandas
   - astropy
   - numpy
-  - pip
-  - pip:
-    - jupyter-server-proxy
+  - nbserverproxy
