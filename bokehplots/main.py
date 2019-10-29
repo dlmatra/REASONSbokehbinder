@@ -42,7 +42,7 @@ continuous = [x for x in columns if x not in discrete]
 #df.at['0','Target']='ciao'
 #df['Target'][0]
 #glob.glob('./bokehplots/static/GJ14*')
-discrete
+#discrete
 
 
 # In[4]:
@@ -132,11 +132,11 @@ def create_figure():
     
     
     
-    if (xs not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'width/R']):
+    if (xs not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'fracwidth']):
         xaxtype='log'
     else:
         xaxtype='auto'
-    if (ys not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'width/R']):
+    if (ys not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'fracwidth']):
         yaxtype='log'
     else:
         yaxtype='auto'
@@ -251,16 +251,16 @@ def update(attr, old, new):
 # In[6]:
 
 
-x = Select(title='X-Axis', value='Lstar', options=columns)
+x = Select(title='X-Axis', value='Target', options=columns)
 x.on_change('value', update)
 
 y = Select(title='Y-Axis', value='R', options=columns)
 y.on_change('value', update)
 
-size = Select(title='Size', value='width', options=['None'] + continuous)
+size = Select(title='Size', value='None', options=['None'] + continuous)
 size.on_change('value', update)
 
-color = Select(title='Color', value='f', options=['None'] + continuous)
+color = Select(title='Color', value='width', options=['None'] + continuous)
 color.on_change('value', update)
 
 controls = column([x, y, color, size], width=200)
