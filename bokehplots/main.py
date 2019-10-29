@@ -30,22 +30,6 @@ N_COLORS = len(COLORS)
 
 
 df = pd.read_pickle(join(dirname(__file__), 'static/REASONS_DataFrame_withsdbinfo'))
-df['Sigmatot']=4.0*np.pi*df['f']*(df['rbb'])**2.0
-df['Sigmatot_1sigup']=0.5*np.sqrt((4.0*np.pi*(df['f_1sigup']-df['f_1sigdwn'])*(df['rbb'])**2.0)**2.0+(8.*np.pi*df['f']*df['rbb']*(df['rbb_1sigup']-df['rbb_1sigdwn']))**2.0)
-df['Sigmatot_1sigdwn']=-df['Sigmatot_1sigup']
-df['fracwidth']=df['width']/df['R']
-df['fracwidth_1sigup']=df['fracwidth']*np.sqrt((df['width_1sigup']-df['width_1sigdwn'])**2.0+(df['R_1sigup']-df['R_1sigdwn'])**2.0)
-df['fracwidth_1sigdwn']=-df['fracwidth_1sigup']
-df['fracwidth_lims']=df['width_lims']
-df['Fbelt100pc']=df['Fbelt']*(df['d']/100.0)**2.0
-df['Fbelt100pc_1sigup']=np.sqrt(((df['d']**2.0)/1e4*(df['Fbelt_1sigup']-df['Fbelt_1sigdwn']))**2.0+(2.0*df['Fbelt']*df['d']/1e4*(df['Fbelt_1sigup']-df['Fbelt_1sigdwn']))**2.0)
-df['Fbelt100pc_1sigdwn']=-df['Fbelt100pc_1sigup']
-df['ScoCen']=["" for x in df['Target']]
-#df['ScoCen'][df['Target'].isi]=True
-df.loc[df['Target'].isin(['HD95086', 'HD106906', 'HD110058', 'HD111520', 'HD112810', 'HD113556', 'HD113766', 'HD114082', 'HD115600', 'HD117214', 'HD121191', 'HD121617', 'HD129590', 'HD131488', 'HD131835', 'HD138813', 'HD142315', 'HD142446', 'HD145560', 'HD146181', 'HD146897', 'HD147137']),'ScoCen']="True"#[]
-df.loc[~df['Target'].isin(['HD95086', 'HD106906', 'HD110058', 'HD111520', 'HD112810', 'HD113556', 'HD113766', 'HD114082', 'HD115600', 'HD117214', 'HD121191', 'HD121617', 'HD129590', 'HD131488', 'HD131835', 'HD138813', 'HD142315', 'HD142446', 'HD145560', 'HD146181', 'HD146897', 'HD147137']),'ScoCen']="False"#[]
-#Remove
-#df=df[df['ScoCen']=="False"]
 
 
 # In[3]:
