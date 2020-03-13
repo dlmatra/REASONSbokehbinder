@@ -74,7 +74,7 @@ def create_figure():
     
       
     #Quantities without upper or lower limits
-    df['imgs']=[glob.glob('./bokehplots/static/'+x+'*.png') for x in df['Target']]
+    df['imgs']=[glob.glob('./bokehplots/static/'+x+'_*.png') for x in df['Target']]
     #source.add([glob.glob('./bokehplots/static/'+x+'*.png') for x in source.data['Target']],
                #name='imgs')
     for i in ['Lstar','d','R', 'Fbelt', 'PA']:

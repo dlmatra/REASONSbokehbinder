@@ -7,7 +7,7 @@
 
 from os.path import join, dirname
 import numpy as np
-from astropy.io import ascii
+#from astropy.io import ascii
 import pandas as pd
 import bokeh
 import glob
@@ -18,7 +18,7 @@ from bokeh.plotting import curdoc, figure, ColumnDataSource
 from bokeh.sampledata.autompg import autompg_clean as df
 from bokeh.io import output_notebook, show, push_notebook
 from bokeh.server.server import Server
-output_notebook()
+#output_notebook()
 
 SIZES = list(range(6, 22, 3))
 COLORS = Viridis11
@@ -30,22 +30,6 @@ N_COLORS = len(COLORS)
 
 
 df = pd.read_pickle(join(dirname(__file__), 'static/REASONS_DataFrame_withsdbinfo'))
-df['Sigmatot']=4.0*np.pi*df['f']*(df['rbb'])**2.0
-df['Sigmatot_1sigup']=0.5*np.sqrt((4.0*np.pi*(df['f_1sigup']-df['f_1sigdwn'])*(df['rbb'])**2.0)**2.0+(8.*np.pi*df['f']*df['rbb']*(df['rbb_1sigup']-df['rbb_1sigdwn']))**2.0)
-df['Sigmatot_1sigdwn']=-df['Sigmatot_1sigup']
-df['fracwidth']=df['width']/df['R']
-df['fracwidth_1sigup']=df['fracwidth']*np.sqrt((df['width_1sigup']-df['width_1sigdwn'])**2.0+(df['R_1sigup']-df['R_1sigdwn'])**2.0)
-df['fracwidth_1sigdwn']=-df['fracwidth_1sigup']
-df['fracwidth_lims']=df['width_lims']
-df['Fbelt100pc']=df['Fbelt']*(df['d']/100.0)**2.0
-df['Fbelt100pc_1sigup']=np.sqrt(((df['d']**2.0)/1e4*(df['Fbelt_1sigup']-df['Fbelt_1sigdwn']))**2.0+(2.0*df['Fbelt']*df['d']/1e4*(df['Fbelt_1sigup']-df['Fbelt_1sigdwn']))**2.0)
-df['Fbelt100pc_1sigdwn']=-df['Fbelt100pc_1sigup']
-df['ScoCen']=["" for x in df['Target']]
-#df['ScoCen'][df['Target'].isi]=True
-df.loc[df['Target'].isin(['HD95086', 'HD106906', 'HD110058', 'HD111520', 'HD112810', 'HD113556', 'HD113766', 'HD114082', 'HD115600', 'HD117214', 'HD121191', 'HD121617', 'HD129590', 'HD131488', 'HD131835', 'HD138813', 'HD142315', 'HD142446', 'HD145560', 'HD146181', 'HD146897', 'HD147137']),'ScoCen']="True"#[]
-df.loc[~df['Target'].isin(['HD95086', 'HD106906', 'HD110058', 'HD111520', 'HD112810', 'HD113556', 'HD113766', 'HD114082', 'HD115600', 'HD117214', 'HD121191', 'HD121617', 'HD129590', 'HD131488', 'HD131835', 'HD138813', 'HD142315', 'HD142446', 'HD145560', 'HD146181', 'HD146897', 'HD147137']),'ScoCen']="False"#[]
-#Remove
-#df=df[df['ScoCen']=="False"]
 
 
 # In[3]:
@@ -58,7 +42,7 @@ continuous = [x for x in columns if x not in discrete]
 #df.at['0','Target']='ciao'
 #df['Target'][0]
 #glob.glob('./bokehplots/static/GJ14*')
-discrete
+#discrete
 
 
 # In[4]:
@@ -148,11 +132,11 @@ def create_figure():
     
     
     
-    if (xs not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'width/R']):
+    if (xs not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec']):
         xaxtype='log'
     else:
         xaxtype='auto'
-    if (ys not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'width/R']):
+    if (ys not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec']):
         yaxtype='log'
     else:
         yaxtype='auto'
@@ -267,16 +251,16 @@ def update(attr, old, new):
 # In[6]:
 
 
-x = Select(title='X-Axis', value='Lstar', options=columns)
+x = Select(title='X-Axis', value='Target', options=columns)
 x.on_change('value', update)
 
 y = Select(title='Y-Axis', value='R', options=columns)
 y.on_change('value', update)
 
-size = Select(title='Size', value='width', options=['None'] + continuous)
+size = Select(title='Size', value='None', options=['None'] + continuous)
 size.on_change('value', update)
 
-color = Select(title='Color', value='f', options=['None'] + continuous)
+color = Select(title='Color', value='width', options=['None'] + continuous)
 color.on_change('value', update)
 
 controls = column([x, y, color, size], width=200)
