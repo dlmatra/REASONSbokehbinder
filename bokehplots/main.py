@@ -187,10 +187,10 @@ def create_figure():
     if (xs+'_lims' in source.column_names):# and (ys+'_lims' not in source.column_names):
         view3 = CDSView(source=source, filters=[GroupFilter(column_name=xs+'_lims', group='l')])
         view1 = CDSView(source=source, filters=[GroupFilter(column_name=xs+'_lims', group='u')])
-        view2 = CDSView(source=source, filters=[GroupFilter(column_name=xs+'_lims', group='NaN'),
+        view2 = CDSView(source=source, filters=[GroupFilter(column_name=xs+'_lims', group='NaN'),GroupFilter(column_name=ys+'_lims', group='NaN'),
                                                 BooleanFilter([False if xx=='NaN' else True for xx in df[xs].values]), 
                                                 BooleanFilter([False if xx=='False' else True for xx in df['ScoCen'].values])])
-        view4 = CDSView(source=source, filters=[GroupFilter(column_name=xs+'_lims', group='NaN'),
+        view4 = CDSView(source=source, filters=[GroupFilter(column_name=xs+'_lims', group='NaN'),GroupFilter(column_name=ys+'_lims', group='NaN'),
                                                 BooleanFilter([False if xx=='NaN' else True for xx in df[xs].values]), 
                                                 BooleanFilter([True if xx=='False' else False for xx in df['ScoCen'].values])]) 
         p.circle(x=xs, y=ys, source=source, color='color', size='size', line_color="white", alpha=0.6, 
@@ -205,10 +205,10 @@ def create_figure():
     if (ys+'_lims' in source.column_names):# and (xs+'_lims' not in source.column_names):
         view3 = CDSView(source=source, filters=[GroupFilter(column_name=ys+'_lims', group='l')])
         view1 = CDSView(source=source, filters=[GroupFilter(column_name=ys+'_lims', group='u')])
-        view2 = CDSView(source=source, filters=[GroupFilter(column_name=ys+'_lims', group='NaN'), 
+        view2 = CDSView(source=source, filters=[GroupFilter(column_name=ys+'_lims', group='NaN'),GroupFilter(column_name=xs+'_lims', group='NaN'), 
                                                 BooleanFilter([False if xx=='NaN' else True for xx in df[xs].values]), 
                                                 BooleanFilter([False if xx=='False' else True for xx in df['ScoCen'].values])])
-        view4 = CDSView(source=source, filters=[GroupFilter(column_name=ys+'_lims', group='NaN'), 
+        view4 = CDSView(source=source, filters=[GroupFilter(column_name=ys+'_lims', group='NaN'),GroupFilter(column_name=xs+'_lims', group='NaN'), 
                                                 BooleanFilter([False if xx=='NaN' else True for xx in df[xs].values]), 
                                                 BooleanFilter([False if xx=='True' else True for xx in df['ScoCen'].values])])
         p.circle(x=xs, y=ys, source=source, color='color', size='size', line_color="white", alpha=0.6, 
@@ -219,6 +219,7 @@ def create_figure():
                    hover_color='white', hover_alpha=0.5, view=view1)
         p.triangle(x=xs, y=ys, source=source, color='color', size='size', line_color="white", alpha=0.6, 
                    hover_color='white', hover_alpha=0.5, view=view3)    
+
  
     if (xs+'_lims' not in source.column_names) and (ys+'_lims' not in source.column_names):
         view2 = CDSView(source=source, filters=[BooleanFilter([False if xx=='False' else True for xx in df['ScoCen'].values])])
