@@ -116,12 +116,12 @@ def create_figure():
                 ></img>
             </div>
             <div>
-                <span style="font-size: 17px; font-weight: bold;text-align: center">@Target</span>
-                <span style="font-size: 15px; color: #966;text-align: center">[L: @Lstar_str Lsun, d: @d_str pc]<br></span>
-                <span style="font-size: 17px;text-align: center">lambda_mm: @wavelength_str mm, Fbelt_mm: @Fbelt_str mJy<br></span>
-                <span style="font-size: 17px;text-align: center">R: @R_str au, width: @width_str au<br></span>
-                <span style="font-size: 17px;text-align: center">f: @f_str, h: @h_str<br></span>
-                <span style="font-size: 17px;text-align: center">inc: @inc_str deg, PA: @PA_str deg</span>
+                <span style="font-size: 15px; font-weight: bold;text-align: center">@Target</span>
+                <span style="font-size: 13px; color: #966;text-align: center">[L: @Lstar_str Lsun, d: @d_str pc]<br></span>
+                <span style="font-size: 13px;text-align: center">lambda_mm: @wavelength_str mm, Fbelt_mm: @Fbelt_str mJy<br></span>
+                <span style="font-size: 13px;text-align: center">R: @R_str au, width: @width_str au<br></span>
+                <span style="font-size: 13px;text-align: center">f: @f_str, h: @h_str<br></span>
+                <span style="font-size: 13px;text-align: center">inc: @inc_str deg, PA: @PA_str deg</span>
             </div>
         </div>
     """
