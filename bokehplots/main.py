@@ -86,8 +86,14 @@ def create_figure():
         df.loc[df[i+'_str']=='nan',i+'_str'] = '-'
         
     #Quantities with upper or lower limits
-    for i in ['width','inc','h']:
+    for i in ['width','inc']:
         df[i+'_str']=["{:.1f}".format(x) for x in df[i]]
+        df.loc[df[i+'_lims']=='u',i+'_str'] = '<'+df[i+'_str']
+        df.loc[df[i+'_lims']=='l',i+'_str'] = '>'+df[i+'_str']
+        df.loc[df[i+'_str']=='nan',i+'_str'] = '-'
+
+    for i in ['h']:
+        df[i+'_str']=["{:.2f}".format(x) for x in df[i]]
         df.loc[df[i+'_lims']=='u',i+'_str'] = '<'+df[i+'_str']
         df.loc[df[i+'_lims']=='l',i+'_str'] = '>'+df[i+'_str']
         df.loc[df[i+'_str']=='nan',i+'_str'] = '-'
