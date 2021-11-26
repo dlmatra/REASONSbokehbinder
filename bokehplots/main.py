@@ -143,11 +143,11 @@ def create_figure():
     
     
     
-    if (xs not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'fracwidth', 'h', 'RoverRbb']):
+    if (xs not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'fracwidth', 'h']):
         xaxtype='log'
     else:
         xaxtype='auto'
-    if (ys not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'fracwidth', 'h', 'RoverRbb']):
+    if (ys not in ['Target', 'wavelength', 'PA', 'inc', 'dRA', 'dDec', 'fracwidth', 'h']):
         yaxtype='log'
     else:
         yaxtype='auto'
